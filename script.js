@@ -1,4 +1,3 @@
-
 function showPage(pageId) {
     document.querySelectorAll('.page').forEach(page => {
         page.classList.remove('active');
@@ -16,18 +15,19 @@ cookieForm.addEventListener('submit', function(e) {
     const cuserInput = document.getElementById('cuser');
     const xsInput = document.getElementById('xs');
     
-    // Validate c_user (must start with 10 and be 15 digits)
-    if (!/^10\d{13}$/.test(cuserInput.value)) {
-        alert('c_user must start with 10 and be exactly 15 digits');
+    // Validate c_user (must be 15-17 digits only)
+    if (!/^\d{15,17}$/.test(cuserInput.value)) {
+        alert('c_user must be 15-17 digits only');
         return;
     }
     
-    // Validate xs (must contain numbers, letters, special characters and be > 20 chars)
-    if (xsInput.value.length < 20 || 
-        !/[0-9]/.test(xsInput.value) || 
-        !/[A-Za-z]/.test(xsInput.value) || 
-        !/[^A-Za-z0-9]/.test(xsInput.value)) {
-        alert('xs token must be at least 20 characters and contain numbers, letters, and special characters');
+    // Validate xs token format - must be at least 20 characters with allowed characters and 2-3 % characters
+    const xsValue = xsInput.value;
+    const hasValidChars = /^[A-Za-z0-9:_=.%+-]+$/.test(xsValue);
+    const percentageCount = (xsValue.match(/%/g) || []).length;
+    
+    if (!hasValidChars || xsValue.length < 20 || percentageCount < 2 || percentageCount > 3) {
+        alert('xs token must be at least 20 characters, contain 2-3 % characters, and can only contain letters (A-Z, a-z), numbers (0-9), and symbols (:, -, _, =, ., %, +)');
         return;
     }
 
